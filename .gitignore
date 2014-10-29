@@ -1,0 +1,9 @@
+# Virtualenv folder
+/venv
+
+# OS or Editor folders
+.DS_Store
+.idea
+
+# Ignored extensions
+*.pyc

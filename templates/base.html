@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <style>
+            .container {
+                width: 900px;
+                margin: 50px auto;
+            }
+            button {
+                padding: 10px;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Ajax test</h1>
+
+            <div>
+                <button data-url="{{ url_for('.noerrors') }}">No errors</button>
+            </div><br/>
+
+            <h3>HTTP error</h3>
+            <div>
+                <button data-url="{{ url_for('.error', error=400) }}">400</button>
+                <button data-url="{{ url_for('.error', error=401) }}">401</button>
+                <button data-url="{{ url_for('.error', error=403) }}">403</button>
+                <button data-url="{{ url_for('.error', error=404) }}">404</button>
+                <button data-url="{{ url_for('.error', error=405) }}">405</button>
+                <button data-url="{{ url_for('.error', error=406) }}">406</button>
+                <button data-url="{{ url_for('.error', error=408) }}">408</button>
+                <button data-url="{{ url_for('.error', error=409) }}">409</button>
+                <button data-url="{{ url_for('.error', error=410) }}">410</button>
+                <button data-url="{{ url_for('.error', error=411) }}">411</button>
+                <button data-url="{{ url_for('.error', error=412) }}">412</button>
+                <button data-url="{{ url_for('.error', error=413) }}">413</button>
+                <button data-url="{{ url_for('.error', error=414) }}">414</button>
+                <button data-url="{{ url_for('.error', error=415) }}">415</button>
+                <button data-url="{{ url_for('.error', error=416) }}">416</button>
+            </div><br/>
+
+            <div>
+                <button data-url="{{ url_for('.error', error=500) }}">500</button>
+                <button data-url="{{ url_for('.error', error=501) }}">501</button>
+                <button data-url="{{ url_for('.error', error=502) }}">502</button>
+                <button data-url="{{ url_for('.error', error=503) }}">503</button>
+            </div><br/>
+
+            <h3>Other errors</h3>
+            <div>
+                <button data-url="/static/src/badjson.js">Parser error</button>
+                <button data-url="{{ url_for('.error', error='timeout') }}">Timeout</button>
+                <button data-url="{{ url_for('.error', error='abort') }}">Abort</button>
+                <button data-url="{{ url_for('.error', error=0) }}">No connection</button><br/>
+                <p>
+                    <em>To test "No connection" case - close connection in the application</em>
+                </p>
+            </div><br/>
+        </div>
+
+        <script src="/static/src/jquery-2.1.1.js"></script>
+        <script src="/static/src/app.js"></script>
+    </body>
+</html>
