@@ -1,21 +1,20 @@
 $(function(){
-  $(document).ajaxError(function (event, jqXHR, ajaxSettings, thrownError) {
-//    console.log('event', event);
-//    console.log('jqXHR', jqXHR);
-//    console.log('ajaxSettings', ajaxSettings);
-//    console.log('thrownError', thrownError);
+  $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
+    jqXHR.fail(function(jqXHR, textStatus, errorThrown) {
+//      console.log('options:', options);
+//      console.log('jqXHR:', jqXHR);
+//      console.log('textStatus:', textStatus);
+//      console.log('errorThrown:', errorThrown);
 
-    // Possible values for thrownError argument are "timeout", "error", "abort", and "parsererror".
-    // When an HTTP error occurs, errorThrown receives the textual portion of the HTTP status
-
-    var message = ajaxSettings.url + ": ";
-    if (thrownError == 'parsererror')   message += "Parsing request was failed.";
-    else if (thrownError == 'timeout')  message += "Request time out.";
-    else if (thrownError == 'abort')    message += "Request was aborted.";
-    else if (jqXHR.status === 0)        message += "No connection.";
-    else if (jqXHR.status)              message += "HTTP Error " + jqXHR.status + " – " + jqXHR.statusText + ".";
-    else                                message += "Unknown error.";
-    console.error(message);
+      var message = options.url + ": ";
+      if (textStatus == 'parsererror')    message += "Parsing request was failed – " + errorThrown;
+      else if (errorThrown == 'timeout')  message += "Request time out.";
+      else if (errorThrown == 'abort')    message += "Request was aborted.";
+      else if (jqXHR.status === 0)        message += "No connection.";
+      else if (jqXHR.status)              message += "HTTP Error " + jqXHR.status + " – " + jqXHR.statusText + ".";
+      else                                message += "Unknown error.";
+      console.error(message);
+    });
   });
 
 
